@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @vite('resources/css/app.css')
-@vite('resources/js/darkmode.js')
 </head>
 <body>
 
@@ -28,19 +27,6 @@
 @else
   <a href="{{ route('login') }}" class="px-4 py-2 rounded bg-indigo-600 text-white">Login</a>
 @endif
-                        
-                        <!-- Tombol Dark Mode -->
-      <button id="theme-toggle" type="button" 
-              class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-        <!-- Icon Sun -->
-        <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10 15a5 5 0 100-10 5 5 0 000 10z"></path>
-        </svg>
-        <!-- Icon Moon -->
-        <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M17.293 13.293a8 8 0 01-11.31-11.31 8 8 0 1011.31 11.31z"></path>
-        </svg>
-      </button>
 
                         {{--button menu in mobile --}}
                         <button type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
@@ -66,7 +52,7 @@
                             <div class="py-4 overflow-y-auto">
                                 <ul class="space-y-2">
                                     <li>
-                                        <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <a href="{{ route('dashboard') }}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                             <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
                                             <span class="ml-3">Dashboard</span>
                                         </a>
@@ -82,10 +68,13 @@
                                                 <a href="{{ route('products.index') }}" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Products</a>
                                             </li>
                                             <li>
-                                                <a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Billing</a>
+                                                <a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tentang Game Construck</a>
                                             </li>
                                             <li>
-                                                <a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Invoice</a>
+                                                <a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tentang Website</a>
+                                            </li>
+                                             <li>
+                                                <a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tentang Kursus Coding</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -142,7 +131,7 @@
                     <div class="py-4 px-3 rounded">
                     <ul class="space-y-2">
                         <li>
-                            <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <a href="{{ route('dashboard') }}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
                                 <span class="ml-3">Dashboard</span>
                             </a>
@@ -166,11 +155,14 @@
                                     <li>
                                         <a href="{{ route('products.index') }}"  class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Products</a>
                                     </li>
-                                    <li>
-                                        <a href="#" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Billing</a>
+                                   <li>
+                                        <a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tentang Game Construck</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Invoice</a>
+                                        <a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tentang Website</a>
+                                    </li>
+                                     <li>
+                                        <a href="#" class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tentang Kursus Coding</a>
                                     </li>
                                 </ul>
                          </li>
@@ -206,30 +198,47 @@
             </nav>
             {{-- end sidebar --}}
 
-            {{-- content --}}
+             {{-- content --}}
             <main class="flex-1 bg-white text-xs p-2 overflow-y-auto w-full">
                 
                 <!-- Breadcrumb -->
+                @php
+                    $routeName = Route::currentRouteName(); // contoh: "products.index"
+                    $segments = explode('.', $routeName);   // ["products", "index"]
+
+                    function formatBreadcrumb($text) {
+                        return ucfirst(str_replace('_', ' ', $text));
+                    }
+                @endphp
+
                 <nav class="flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
-                    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <ol class="inline-flex items-center space-x-0.5 md:space-x-0.5">
                         <li class="inline-flex items-center">
-                            <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
-                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
-                            Home
+                            <a href="{{ route('dashboard') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                                Dashboard
                             </a>
                         </li>
-                    
+
+                        @foreach ($segments as $key => $segment)
+                            @if ($segment !== 'index' && $segment !== 'dashboard')
+                                <li>
+                                    <div class="flex items-center">
+                                        <span class="mx-1">/</span>
+                                        <span class="ml-1 text-sm font-medium text-gray-700 dark:text-gray-400">
+                                            {{ formatBreadcrumb($segment) }}
+                                        </span>
+                                    </div>
+                                </li>
+                            @endif
+                        @endforeach
                     </ol>
                 </nav>
 
                 @yield('content')
   
-                
             </main>
             {{-- end content --}}
             
-      
-         
         </div>
         <!-- end main container -->
       

@@ -1,108 +1,109 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
-    <h1 class="mb-4">Dashboard Pemesanan Produk RPL</h1>
+<div class="p-6 space-y-10 dashboard-page bg-gray-50 min-h-screen">
 
-    <!-- Cards Statistik -->
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card text-white bg-primary mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Total Produk</h5>
-                    <p class="card-text fs-4">{{ $totalProduk ?? 12 }}</p>
-                </div>
-            </div>
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+        <div>
+            <p class="text-gray-500 text-lg">Halo, 
+                <span class="font-semibold text-gray-800">{{ Auth::user()->name }}</span> 
+            </p>
         </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-success mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Total Pesanan</h5>
-                    <p class="card-text fs-4">{{ $totalPesanan ?? 34 }}</p>
-                </div>
-            </div>
+        <div class="flex items-center gap-3">
+            <button class="p-3 rounded-full bg-white shadow hover:bg-gray-100 transition">
+                <i class="fas fa-bell text-gray-500"></i>
+            </button>
+            <button class="p-3 rounded-full bg-white shadow hover:bg-gray-100 transition">
+                <i class="fas fa-user-circle text-gray-500"></i>
+            </button>
         </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-warning mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Pesanan Selesai</h5>
-                    <p class="card-text fs-4">{{ $pesananSelesai ?? 20 }}</p>
-                </div>
-            </div>
+    </div>
+
+    <!-- Statistik Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-gradient-to-r from-indigo-500 to-blue-500 text-white p-6 rounded-2xl shadow hover:scale-105 transition">
+            <p class="text-sm opacity-90">Total Produk</p>
+            <h2 class="text-3xl font-bold">{{ $totalProduk ?? 0 }}</h2>
         </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-danger mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Pendapatan</h5>
-                    <p class="card-text fs-4">Rp {{ number_format($pendapatan ?? 4500000) }}</p>
-                </div>
-            </div>
+        <div class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white p-6 rounded-2xl shadow hover:scale-105 transition">
+            <p class="text-sm opacity-90">Total Pesanan</p>
+            <h2 class="text-3xl font-bold">{{ $totalPesanan ?? 0 }}</h2>
+        </div>
+        <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white p-6 rounded-2xl shadow hover:scale-105 transition">
+            <p class="text-sm opacity-90">Pending</p>
+            <h2 class="text-3xl font-bold">{{ $pendingOrders ?? 0 }}</h2>
+        </div>
+        <div class="bg-gradient-to-r from-fuchsia-500 to-purple-500 text-white p-6 rounded-2xl shadow hover:scale-105 transition">
+            <p class="text-sm opacity-90">Pendapatan</p>
+            <h2 class="text-3xl font-bold">Rp {{ number_format($pendapatan ?? 0) }}</h2>
         </div>
     </div>
 
     <!-- Grafik -->
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Tren Pemesanan</div>
-                <div class="card-body">
-                    <canvas id="pesananChart"></canvas>
-                </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h3 class="font-semibold text-gray-800 mb-4">📈 Tren Pemesanan</h3>
+            <canvas id="pesananChart" class="w-full h-64"></canvas>
+        </div>
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h3 class="font-semibold text-gray-800 mb-4">📊 Status Pesanan</h3>
+            <canvas id="statusChart" class="w-full h-64"></canvas>
+        </div>
+    </div>
+
+    <!-- Pesanan Terbaru & Ringkasan -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Pesanan Terbaru -->
+        <div class="lg:col-span-2 bg-white rounded-2xl shadow p-6">
+            <h3 class="font-semibold text-gray-800 mb-4">🛒 Pesanan Terbaru</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm text-gray-700">
+                    <thead>
+                        <tr class="bg-gray-100 text-left">
+                            <th class="py-3 px-4">#</th>
+                            <th class="py-3 px-4">Customer</th>
+                            <th class="py-3 px-4">Produk</th>
+                            <th class="py-3 px-4">Status</th>
+                            <th class="py-3 px-4">Tanggal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($latestOrders as $i => $order)
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4">{{ $i+1 }}</td>
+                            <td class="py-3 px-4">{{ $order->customer_name }}</td>
+                            <td class="py-3 px-4">{{ $order->product_name }}</td>
+                            <td class="py-3 px-4">
+                                <span class="px-3 py-1 rounded-full text-xs font-medium
+                                    @if($order->status == 'Selesai') bg-green-100 text-green-700
+                                    @elseif($order->status == 'Proses') bg-yellow-100 text-yellow-700
+                                    @else bg-red-100 text-red-700 @endif">
+                                    {{ $order->status }}
+                                </span>
+                            </td>
+                            <td class="py-3 px-4">{{ $order->created_at->format('Y-m-d') }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Status Pesanan</div>
-                <div class="card-body">
-                    <canvas id="statusChart"></canvas>
-                </div>
+
+        <!-- Ringkasan Akun -->
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h3 class="font-semibold text-gray-800 mb-4">👤 Ringkasan Akun</h3>
+            <div class="space-y-3 text-sm">
+                <p>Total Pengguna: <strong>{{ $totalUsers ?? 0 }}</strong></p>
+                <p>Produk Aktif: <strong>{{ $activeProducts ?? 0 }}</strong></p>
+                <p>Pesanan Pending: <strong>{{ $pendingOrders ?? 0 }}</strong></p>
+            </div>
+            <div class="mt-4 space-y-2">
+                <a href="{{ route('products.index') }}" class="block text-center bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">Kelola Produk</a>
+                <a href="{{ route('orders.index') }}" class="block text-center border border-indigo-600 text-indigo-600 py-2 rounded-lg hover:bg-indigo-50 transition">Kelola Pesanan</a>
             </div>
         </div>
     </div>
 
-    <!-- Pesanan Terbaru -->
-    <div class="row mt-4">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">Pesanan Terbaru</div>
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Customer</th>
-                                <th>Produk</th>
-                                <th>Status</th>
-                                <th>Tanggal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Alice</td>
-                                <td>Aplikasi Kasir</td>
-                                <td><span class="badge bg-success">Selesai</span></td>
-                                <td>2025-09-22</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Bob</td>
-                                <td>Website Portofolio</td>
-                                <td><span class="badge bg-warning">Proses</span></td>
-                                <td>2025-09-23</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Charlie</td>
-                                <td>E-commerce RPL</td>
-                                <td><span class="badge bg-danger">Pending</span></td>
-                                <td>2025-09-23</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 @endsection

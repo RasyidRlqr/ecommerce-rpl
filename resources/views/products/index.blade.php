@@ -4,7 +4,6 @@
 <div class="container mx-auto px-4 py-12">
     <h2 class="text-3xl font-bold mb-10 text-gray-800 text-center relative inline-block">
         Katalog Produk
-        <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-1 bg-indigo-500 rounded-full"></span>
     </h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
