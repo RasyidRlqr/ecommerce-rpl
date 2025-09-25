@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Order;
 
@@ -14,28 +15,28 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         if ($user->role === 'admin') {
-            $totalProduk = class_exists(Product::class) ? Product::count() : 12;
-            $totalPesanan = class_exists(Order::class) ? Order::count() : 34;
-            $pesananSelesai = 20;
-            $pendapatan = 4500000;
+            $totalProduk = Product::count();
+            $totalPesanan = Order::count();
+            $pesananSelesai = Order::where('status', 'completed')->count();
 
-            // contoh data chart (bulan)
-            $labels = ['Apr','Mei','Jun','Jul','Agu','Sep'];
-            $data = [5, 12, 8, 15, 20, 10];
+            // ✅ Hitung pendapatan dari harga produk
+            $pendapatan = DB::table('orders')
+                ->join('products', 'orders.product_id', '=', 'products.id')
+                ->sum('products.price');
 
-            // ✅ Ambil pesanan terbaru (kalau ada model Order)
-            $latestOrders = class_exists(Order::class) 
-                ? Order::latest()->take(5)->get() 
-                : collect([]); // kalau gak ada model, kirim collection kosong
+            $labels = ['Jan','Feb','Mar','Apr','Mei','Jun', 'Jul','Agust', 'Sept'];
+            $data = [10, 15, 7, 20, 25, 18, 100, 39, 12];
+
+            $kategorilabel = ['Website', 'Mobile App', 'Game', 'Courses'];
+            $kategoridata = [5, 3, 4, 2];
+
+            $latestOrders = Order::latest()->take(5)->get();
 
             return view('dashboard.dashboard', compact(
-                'totalProduk',
-                'totalPesanan',
-                'pesananSelesai',
-                'pendapatan',
-                'labels',
-                'data',
-                'latestOrders' // ✅ dikirim ke view
+                'totalProduk', 'totalPesanan', 'pesananSelesai', 'pendapatan',
+                'labels', 'data',
+                'kategorilabel', 'kategoridata',
+                'latestOrders'
             ));
         }
 

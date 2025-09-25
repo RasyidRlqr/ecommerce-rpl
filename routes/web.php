@@ -12,15 +12,16 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
 
-
-Route::resource('orders', App\Http\Controllers\OrderController::class);
+    Route::resource('orders', App\Http\Controllers\OrderController::class);
 
 Route::resource('users', App\Http\Controllers\UserController::class);
 
 Route::resource('/products', ProductController::class);
 
-Route::get('/', function () {
-    return view('dashboard.dashboard');
+Route::get('/', [DashboardController::class, 'index'])->middleware('auth');
+
 });
+
+
+
