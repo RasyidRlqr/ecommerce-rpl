@@ -200,7 +200,7 @@
 
              {{-- content --}}
             <main class="flex-1 bg-white text-xs p-2 overflow-y-auto w-full">
-                
+                 
                 <!-- Breadcrumb -->
                 @php
                     $routeName = Route::currentRouteName(); // contoh: "products.index"
@@ -233,9 +233,9 @@
                         @endforeach
                     </ol>
                 </nav>
-
+                <div class="animated-content">
                 @yield('content')
-  
+                </div>
             </main>
             {{-- end content --}}
             

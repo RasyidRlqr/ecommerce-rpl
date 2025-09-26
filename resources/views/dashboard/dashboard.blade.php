@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid py-6 dashboard-page">
+<div class="container-fluid py-6 dashboard-page ">
 
   <!-- Header -->
   <div class="flex justify-between items-center mb-6">

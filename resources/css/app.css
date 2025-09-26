@@ -42,6 +42,250 @@ html {
     background-clip: text;
 }
 
+/* Container utama */
+.products-filter {
+    margin-bottom: 2rem; /* mb-8 */
+    opacity: 1;
+    transform: none;
+}
 
+/* Flex utama untuk search + filter buttons */
+.products-filter .filter-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
 
+@media (min-width: 1024px) {
+    .products-filter .filter-wrapper {
+        flex-direction: row;
+    }
+}
 
+/* Search box container */
+.products-filter .search-container {
+    position: relative;
+    width: 100%;
+    max-width: 16rem; /* lg:w-96 */
+}
+
+/* Icon di search */
+.products-filter .search-container svg {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af; /* text-gray-400 */
+    height: 1rem;   /* h-4 */
+    width: 1rem;    /* w-4 */
+}
+
+/* Input search */
+.products-filter .search-container input {
+    width: 100%;
+    height: 2.5rem; /* h-10 */
+    padding-left: 2.5rem; /* pl-10 */
+    padding-right: 0.75rem;
+    border-radius: 0.375rem; /* rounded-md */
+    border: 1px solid #d1d5db; /* border-input */
+    background-color: #ffffff; /* bg-background */
+    font-size: 0.875rem; /* text-sm */
+    color: #111827;
+}
+
+.products-filter .search-container input::placeholder {
+    color: #6b7280; /* placeholder:text-muted-foreground */
+}
+
+/* Wrapper tombol filter */
+.products-filter .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* Style tombol umum */
+.products-filter .filter-buttons button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.25rem; /* h-9 */
+    padding: 0 0.75rem; /* px-3 */
+    border-radius: 0.375rem; /* rounded-md */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Tombol aktif (All) */
+.products-filter .filter-buttons button.active {
+    background-color: #3b82f6; /* bg-primary */
+    color: #ffffff; /* text-primary-foreground */
+}
+
+.products-filter .filter-buttons button.active:hover {
+    background-color: #2563eb; /* bg-primary/90 */
+}
+
+/* Tombol lainnya */
+.products-filter .filter-buttons button:not(.active) {
+    background-color: #ffffff; /* bg-background */
+    border: 1px solid #d1d5db; /* border-input */
+    color: #111827;
+}
+
+.products-filter .filter-buttons button:not(.active):hover {
+    background-color: #f3f4f6; /* hover:bg-accent */
+    color: #1f2937; /* hover:text-accent-foreground */
+}
+
+/* app.css */
+.animated-content {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: contentFadeIn 0.3s ease forwards;
+}
+
+@keyframes contentFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*halaman detail produk*/
+
+/* ===========================
+   Global
+=========================== */
+body.detail {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f5f5;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+.max-w-6xl {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+/* ===========================
+   Grid & Layout
+=========================== */
+.grid {
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* ===========================
+   Gambar Produk
+=========================== */
+img.rounded-lg {
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* ===========================
+   Judul & Harga
+=========================== */
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+p.text-3xl {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #2563eb; /* blue profesional */
+    margin-top: 1rem;
+}
+
+/* ===========================
+   Rating
+=========================== */
+.rating {
+    display: flex;
+    align-items: center;
+    color: #facc15; /* yellow profesional */
+    font-size: 1rem;
+    margin-top: 0.25rem;
+}
+
+.rating span.review-count {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-left: 0.5rem;
+}
+
+/* ===========================
+   Deskripsi & Fitur
+=========================== */
+h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    color: #4b5563;
+}
+
+ul.features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+ul.features li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #374151;
+}
+
+/* ===========================
+   Tombol Aksi
+=========================== */
+button.buy-now {
+    background-color: #4f46e5; /* purple profesional */
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    max-width: 200px;
+}
+
+button.buy-now:hover {
+    background-color: #4338ca;
+}
+
+/* ===========================
+   Spacing & Margin
+=========================== */
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 0.5rem; }
