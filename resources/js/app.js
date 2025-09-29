@@ -10,7 +10,7 @@ if (salesChartEl) {
         data: {
             labels: JSON.parse(salesChartEl.dataset.labels || '["Jan","Feb","Mar","Apr"]'),
             datasets: [{
-                label: 'Sales',
+                label: 'Penjualan',
                 data: JSON.parse(salesChartEl.dataset.values || '[1000000, 2000000, 1500000, 3000000]'),
                 borderColor: '#4F46E5',
                 backgroundColor: 'rgba(79,70,229,0.2)',
@@ -27,9 +27,9 @@ if (categoryChartEl) {
     new Chart(categoryChartEl, {
         type: 'doughnut',
         data: {
-            labels: ['Website', 'Mobile App', 'Game', 'Course'],
+            labels: JSON.parse(categoryChartEl.dataset.labels || '[]'),
             datasets: [{
-                data: [12, 8, 5, 15],
+                data: JSON.parse(categoryChartEl.dataset.values || '[]'),
                 backgroundColor: ['#3B82F6','#10B981','#F59E0B','#8B5CF6']
             }]
         },

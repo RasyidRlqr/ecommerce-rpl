@@ -19,14 +19,30 @@ class DashboardController extends Controller
             $totalPesanan = Order::count();
             $pesananSelesai = Order::where('status', 'completed')->count();
 
-            // ✅ Hitung pendapatan dari harga produk
+            // Pendapatan total dari semua order (join ke products)
             $pendapatan = DB::table('orders')
                 ->join('products', 'orders.product_id', '=', 'products.id')
                 ->sum('products.price');
 
-            $labels = ['Jan','Feb','Mar','Apr','Mei','Jun', 'Jul','Agust', 'Sept'];
-            $data = [10, 15, 7, 20, 25, 18, 100, 39, 12];
+            // Ambil total penjualan per bulan (tahun ini)
+            $salesData = DB::table('orders')
+                ->join('products', 'orders.product_id', '=', 'products.id')
+                ->select(
+                    DB::raw('MONTH(orders.created_at) as month'),
+                    DB::raw('SUM(products.price) as total')
+                )
+                ->whereYear('orders.created_at', date('Y'))
+                ->groupBy('month')
+                ->orderBy('month')
+                ->get();
 
+            $labels = $salesData->pluck('month')->map(function($m) {
+                return date('M', mktime(0, 0, 0, $m, 10)); // Jan, Feb, Mar...
+            });
+
+            $data = $salesData->pluck('total');
+
+            // Chart kategori (contoh tetap pakai dummy)
             $kategorilabel = ['Website', 'Mobile App', 'Game', 'Courses'];
             $kategoridata = [5, 3, 4, 2];
 
