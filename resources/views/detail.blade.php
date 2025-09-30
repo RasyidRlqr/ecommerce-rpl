@@ -15,7 +15,7 @@
                 <path d="m12 19-7-7 7-7"></path>
                 <path d="M19 12H5"></path>
             </svg>
-            Back to Products
+            kembali
         </button>
     </a>
 </div>

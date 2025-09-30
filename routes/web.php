@@ -41,4 +41,10 @@ Route::middleware('auth')->group(function () {
 
     // Default home diarahkan ke dashboard
     Route::get('/', [DashboardController::class, 'index']);
+
+Route::get('/game', function () {
+    return view('game');
+})->name('game');
+
+
 });

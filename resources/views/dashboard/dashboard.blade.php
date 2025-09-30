@@ -9,9 +9,12 @@
       <h1 class="text-3xl font-bold">Admin Dashboard</h1>
       <p class="text-gray-600">Welcome back! Here's what's happening with your store.</p>
     </div>
-    <div>
-      <a href="{{ route('products.index') }}" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow mr-2">Manage Products</a>
-    </div>
+<div class="mt-6 flex flex-wrap">
+  <a href="{{ route('products.index') }}" 
+     class="w-full sm:w-auto px-4 py-2 bg-blue-600 text-white rounded-lg shadow text-center">
+    Manage Products
+  </a>
+</div>
   </div>
 
  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
