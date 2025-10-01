@@ -98,9 +98,9 @@
 
             @php
                 $games = [
-                    ['img' => 'hasil.jpg',  'alt' => 'Contoh Game 1', 'link' => 'https://www.construct.net/en/free-online-games/key-shield-184/play?via=mh'],
-                    ['img' => 'hasil2.jpg', 'alt' => 'Contoh Game 2', 'link' => 'https://www.construct.net/en/free-online-games/revenge-dog-2378/play?via=mh'],
-                    ['img' => 'hasil3.jpg', 'alt' => 'Contoh Game 3', 'link' => 'https://www.construct.net/en/free-online-games/the-legend-of-zelda-maker-21903/play?via=mh'],
+                    ['img' => 'hasil1.jpg',  'alt' => 'Contoh Game 1', 'link' => 'https://www.construct.net/en/free-online-games/key-shield-184/play?via=mh'],
+                    ['img' => 'hasildua.jpg', 'alt' => 'Contoh Game 2', 'link' => 'https://www.construct.net/en/free-online-games/revenge-dog-2378/play?via=mh'],
+                    ['img' => 'hasiltiga.jpg', 'alt' => 'Contoh Game 3', 'link' => 'https://www.construct.net/en/free-online-games/the-legend-of-zelda-maker-21903/play?via=mh'],
                     ['img' => 'hasil4.png', 'alt' => 'Contoh Game 4', 'link' => 'https://www.construct.net/en/free-online-games/comic-manga-chaos-crossover-4334/play?via=mh'],
                     ['img' => 'hasil5.jpg', 'alt' => 'Contoh Game 5', 'link' => 'https://www.construct.net/en/free-online-games/tiny-crash-fighters-46782/play?via=mh'],
                     ['img' => 'hasil6.png', 'alt' => 'Contoh Game 6', 'link' => 'https://www.construct.net/en/free-online-games/medusa-wrath-queen-178/play?via=mh'],
