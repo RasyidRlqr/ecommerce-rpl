@@ -3,10 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-
   @vite('resources/css/app.css')
 </head>
 <body>
@@ -29,7 +25,7 @@
     <button class="px-4 py-2 rounded bg-red-500 text-white">Logout</button>
   </form>
 @else
-  <a href="{{ route('login') }}" class="px-4 py-2 rounded bg-indigo-600 text-white">Login</a>
+
 @endif
 
                         {{--button menu in mobile --}}
@@ -153,36 +149,46 @@
             <main class="flex-1 bg-white text-xs p-2 overflow-y-auto w-full">
                  
                 <!-- Breadcrumb -->
-                @php
-                    $routeName = Route::currentRouteName(); // contoh: "products.index"
-                    $segments = explode('.', $routeName);   // ["products", "index"]
+@php
+    $segments = Request::segments(); // contoh: ["dashboard", "products"]
 
-                    function formatBreadcrumb($text) {
-                        return ucfirst(str_replace('_', ' ', $text));
-                    }
-                @endphp
+    function formatBreadcrumb($text) {
+        return ucfirst(str_replace(['-', '_'], ' ', $text));
+    }
+
+    $url = '';
+@endphp
 
 <nav class="flex px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700" aria-label="Breadcrumb">
-    <ol class="inline-flex items-center space-x-0.5 md:space-x-0.5">
-        <!-- Dashboard -->
+    <ol class="inline-flex items-center space-x-1">
+        <!-- Tambah dashboard hanya sekali -->
         <li class="inline-flex items-center">
-            <a href="{{ route('dashboard') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+            <a href="{{ route('dashboard') }}" class="text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
                 Dashboard
             </a>
         </li>
 
-        <!-- Produk -->
-        <li>
-            <div class="flex items-center">
-                <span class="mx-1">/</span>
-                <a href="{{ route('products.index') }}" class="ml-1 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
-                    Produk
-                </a>
-            </div>
-        </li>
+        @foreach($segments as $index => $segment)
+            @php $url .= "/$segment"; @endphp
+
+            @if($segment !== 'dashboard') <!-- cegah duplikat dashboard -->
+                <li class="inline-flex items-center">
+                    <span class="mx-2">/</span>
+                    @if($index !== count($segments)-1)
+                        <a href="{{ $url }}" class="text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                            {{ formatBreadcrumb($segment) }}
+                        </a>
+                    @else
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            {{ formatBreadcrumb($segment) }}
+                        </span>
+                    @endif
+                </li>
+            @endif
+        @endforeach
     </ol>
 </nav>
-
+    
                 <div class="animated-content">
                 @yield('content')
                 </div>

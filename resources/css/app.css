@@ -11,19 +11,15 @@
   18.5% { transform: translateX(5px) rotateY(7deg); }
   31.5% { transform: translateX(-3px) rotateY(-5deg); }
   43.5% { transform: translateX(2px) rotateY(3deg); }
-  50% { transform: translateX(0); }
-  100% { transform: translateX(0); }
+  50%, 100% { transform: translateX(0); }
 }
-
 .head-shake {
   display: inline-block;
   animation: headShake 2.5s ease-in-out infinite;
 }
 
 /* Scrollbar stabil */
-html {
-  scrollbar-gutter: stable;
-}
+html { scrollbar-gutter: stable; }
 
 /* Teks gradasi */
 .gradient-text {
@@ -38,31 +34,21 @@ html {
 =========================== */
 .products-filter {
   margin-bottom: 2rem;
-  opacity: 1;
-  transform: none;
 }
-
 .products-filter .filter-wrapper {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
-  justify-content: space-between;
 }
-
 @media (min-width: 1024px) {
-  .products-filter .filter-wrapper {
-    flex-direction: row;
-  }
+  .products-filter .filter-wrapper { flex-direction: row; }
 }
-
-/* Search */
 .products-filter .search-container {
   position: relative;
   width: 100%;
   max-width: 16rem;
 }
-
 .products-filter .search-container svg {
   position: absolute;
   left: 0.75rem;
@@ -72,7 +58,6 @@ html {
   height: 1rem;
   width: 1rem;
 }
-
 .products-filter .search-container input {
   width: 100%;
   height: 2.5rem;
@@ -84,19 +69,12 @@ html {
   font-size: 0.875rem;
   color: #111827;
 }
-
-.products-filter .search-container input::placeholder {
-  color: #6b7280;
-}
-
-/* Filter Buttons */
+.products-filter .search-container input::placeholder { color: #6b7280; }
 .products-filter .filter-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  align-items: center;
 }
-
 .products-filter .filter-buttons button {
   display: inline-flex;
   align-items: center;
@@ -109,22 +87,18 @@ html {
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-
 .products-filter .filter-buttons button.active {
   background-color: #3b82f6;
   color: #ffffff;
 }
-
 .products-filter .filter-buttons button.active:hover {
   background-color: #2563eb;
 }
-
 .products-filter .filter-buttons button:not(.active) {
   background-color: #ffffff;
   border: 1px solid #d1d5db;
   color: #111827;
 }
-
 .products-filter .filter-buttons button:not(.active):hover {
   background-color: #f3f4f6;
   color: #1f2937;
@@ -138,12 +112,8 @@ html {
   transform: translateY(20px);
   animation: contentFadeIn 0.3s ease forwards;
 }
-
 @keyframes contentFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ===========================
@@ -155,44 +125,34 @@ body.detail {
   color: #1f2937;
   line-height: 1.6;
 }
-
 .max-w-6xl {
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   overflow: hidden;
 }
-
-/* Grid */
 .grid { gap: 2rem; }
 @media (max-width: 768px) {
   .grid { grid-template-columns: 1fr; gap: 1.5rem; }
 }
-
-/* Gambar Produk */
 img.rounded-lg {
   width: 100%;
-  height: auto; /* full terlihat */
-  object-fit: contain; /* tidak terpotong */
+  height: auto;
+  object-fit: contain;
   border-radius: 12px;
 }
-
-/* Judul & Harga */
 h1 {
   font-size: 2rem;
   font-weight: 700;
   color: #111827;
   margin-bottom: 0.5rem;
 }
-
 p.text-3xl {
   font-size: 1.875rem;
   font-weight: 700;
   color: #2563eb;
   margin-top: 1rem;
 }
-
-/* Rating */
 .rating {
   display: flex;
   align-items: center;
@@ -200,14 +160,11 @@ p.text-3xl {
   font-size: 1rem;
   margin-top: 0.25rem;
 }
-
 .rating span.review-count {
   color: #6b7280;
   font-size: 0.875rem;
   margin-left: 0.5rem;
 }
-
-/* Deskripsi */
 h2 {
   font-size: 1.125rem;
   font-weight: 600;
@@ -231,7 +188,6 @@ ul.features li {
   color: #374151;
 }
 
-/* Tombol Aksi */
 button.buy-now {
   background-color: #4f46e5;
   color: #ffffff;
@@ -244,18 +200,11 @@ button.buy-now {
   max-width: 200px;
 }
 
-button.buy-now:hover {
-  background-color: #4338ca;
-}
+button.buy-now:hover { background-color: #4338ca; }
 
-/* Margin utilitas */
-.mt-2 { margin-top: 0.5rem; }
-.mt-4 { margin-top: 1rem; }
-.mt-6 { margin-top: 1.5rem; }
-.mt-8 { margin-top: 2rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-
-/* Metric Card */
+/* ===========================
+   Metric Card
+=========================== */
 .metric-card {
   background-color: #ffffff;
   border-radius: 0.75rem;
@@ -266,23 +215,14 @@ button.buy-now:hover {
   align-items: center;
   transition: box-shadow 0.3s ease;
 }
-
-.metric-card:hover {
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
+.metric-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
 .metric-card p {
   font-size: 0.875rem;
   color: #6b7280;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
-
-.metric-card h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
+.metric-card h2 { font-size: 1.5rem; font-weight: 700; }
 .metric-icon {
   padding: 1rem;
   border-radius: 9999px;
@@ -291,15 +231,15 @@ button.buy-now:hover {
   align-items: center;
   justify-content: center;
 }
-
 .metric-icon.blue { background-color: #dbeafe; color: #2563eb; }
 .metric-icon.green { background-color: #d1fae5; color: #16a34a; }
 .metric-icon.teal { background-color: #ccfbf1; color: #0d9488; }
 .metric-icon.yellow { background-color: #fef3c7; color: #ca8a04; }
 
-/* Hero & CTA */
+/* ===========================
+   Hero & CTA
+=========================== */
 .hero-title { line-height: 1.2; }
-
 .hero-btn, .cta-btn {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -307,8 +247,6 @@ button.buy-now:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
-
-/* Hover Gambar */
 .img-hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -316,8 +254,6 @@ button.buy-now:hover {
   transform: scale(1.02);
   box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
-
-/* Responsive typography */
 @media (max-width: 768px) {
   .hero-title { font-size: 2rem; }
 }
