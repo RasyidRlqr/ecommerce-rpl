@@ -13,7 +13,7 @@ class ProductController extends Controller {
         return response()->json($query->latest()->paginate(12));
     }
     public function store(Request $request){
-        $validator = Validator::make($request->all(), ['name' => 'required|string|max:255', 'slug' => 'required|string|unique:products,slug', 'price' => 'required|numeric', 'stock' => 'required|integer', 'type' => 'required|string']);
+        $validator = Validator::make($request->all(), ['name' => 'required|string|max:255', 'slug' => 'required|string|unique:products,slug', 'price' => 'required|numeric', 'stock' => 'nullable|integer', 'type' => 'required|string']);
         if($validator->fails()) return response()->json($validator->errors(), 422);
         $product = Product::create($validator->validated());
         return response()->json($product, 201);
