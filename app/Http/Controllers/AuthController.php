@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthController extends Controller
 {
@@ -37,6 +38,20 @@ class AuthController extends Controller
         return back()->withErrors([
             'email' => 'Email atau password salah.',
         ])->onlyInput('email');
+    }
+
+    public function loginBridge(Request $request)
+    {
+        $token = $request->input('token');
+        $accessToken = PersonalAccessToken::findToken($token);
+
+        if ($accessToken) {
+            $user = $accessToken->tokenable;
+            Auth::login($user); // Membuat sesi web untuk user
+            $request->session()->regenerate();
+            return response()->json(['redirect_url' => route('dashboard')]);
+        }
+        return response()->json(['message' => 'Invalid Token'], 401);
     }
 
     public function logout(Request $request)

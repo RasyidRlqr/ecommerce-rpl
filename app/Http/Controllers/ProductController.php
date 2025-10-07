@@ -10,8 +10,8 @@ class ProductController extends Controller
     // Katalog produk (public)
     public function index()
     {
-        $products = Product::latest()->paginate(12); // tampil 12 produk per halaman
-        return view('products.index', compact('products'));
+        #$products = Product::latest()->paginate(12); // tampil 12 produk per halaman
+        return view('products.index');
     }
 
     // Detail produk
