@@ -35,7 +35,7 @@
             <p class="text-gray-600 mb-2">Mulai proyek aplikasi-mu langsung dari dashboard!</p>
             <span class="text-yellow-600 font-medium">Lihat Aplikasi →</span>
         </a>
-    </div>
+    </div> 
 
     <!-- Game Section -->
     <div class="max-w-5xl mx-auto space-y-8">
