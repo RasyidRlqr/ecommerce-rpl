@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Product;
-use App\Models\Order; // <-- Tambahkan ini
+use App\Models\Order; 
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Schema; // <-- Tambahkan ini
+use Illuminate\Support\Facades\Schema; 
 
 class ProductSeeder extends Seeder
 {
