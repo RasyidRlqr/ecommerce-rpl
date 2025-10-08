@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Product;
-use Illuminate\Support\Str; // <-- Tambahkan ini untuk membuat slug
+use App\Models\Order; // <-- Tambahkan ini
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Schema; // <-- Tambahkan ini
 
 class ProductSeeder extends Seeder
 {
@@ -13,8 +15,15 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        // Hapus semua data lama untuk menghindari duplikat
+        // 1. Nonaktifkan pengecekan foreign key
+        Schema::disableForeignKeyConstraints();
+
+        // 2. Kosongkan tabel (hapus orders dulu, baru products)
+        Order::truncate();
         Product::truncate();
+
+        // 3. Aktifkan kembali pengecekan foreign key
+        Schema::enableForeignKeyConstraints();
 
         $products = [
             [
@@ -75,11 +84,10 @@ class ProductSeeder extends Seeder
             ]
         ];
 
-        // Looping untuk setiap produk dan membuatnya di database
         foreach ($products as $product) {
             Product::create([
                 'name' => $product['name'],
-                'slug' => Str::slug($product['name']), // Slug dibuat otomatis agar konsisten
+                'slug' => Str::slug($product['name']),
                 'description' => $product['description'],
                 'price' => $product['price'],
                 'stock' => $product['stock'],
